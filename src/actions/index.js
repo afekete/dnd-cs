@@ -20,3 +20,10 @@ export const toggleTodo = id => {
         id
     }
 }
+
+export const setStats = stats => {
+    return {
+        type: 'SET_STATS',
+        stats
+    }
+}
