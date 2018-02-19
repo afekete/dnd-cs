@@ -21,28 +21,19 @@ class StatInput extends Component {
     }
 
     render() {
+        let statInputs = this.state.stats.map((input) =>
+            <div key={input.name}>
+                <label htmlFor={input.name + "-input"}>{input.name}</label>
+                <input id={input.name + "-input"} type="number" value={input.value} onChange={e => this.handleChange(input.name, e)} />
+                <br />
+            </div>
+        )
+
         return (
             <form
                 onSubmit={e => this.handleSubmit(e)}
             >
-                <label htmlFor="str-input">Strength</label>
-                <input id="str-input" type="number" value={this.state.stats['str']} onChange={e => this.handleChange('str', e)} />
-                <br />
-                <label htmlFor="dex-input">Dexterity</label>
-                <input id="dex-input" value={this.state.stats['dex']} onChange={e => this.handleChange('dex', e)} />
-                <br />
-                <label htmlFor="con-input">Constitution</label>
-                <input id="con-input" value={this.state.stats['con']} onChange={e => this.handleChange('con', e)} />
-                <br />
-                <label htmlFor="int-input">Intelligence</label>
-                <input id="int-input" value={this.state.stats['int']} onChange={e => this.handleChange('int', e)} />
-                <br />
-                <label htmlFor="wis-input">Wisdom</label>
-                <input id="wis-input" value={this.state.stats['wis']} onChange={e => this.handleChange('wis', e)} />
-                <br />
-                <label htmlFor="cha-input">Charisma</label>
-                <input id="cha-input" value={this.state.stats['cha']} onChange={e => this.handleChange('cha', e)} />
-                <br />
+                {statInputs}
                 <button type="submit">
                     Submit
                 </button>
@@ -53,7 +44,7 @@ class StatInput extends Component {
 
 StatInput.propTypes = {
     handleSubmit: PropTypes.func.isRequired,
-    stats: PropTypes.object.isRequired
+    stats: PropTypes.array.isRequired
 }
 
 export default StatInput

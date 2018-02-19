@@ -27,3 +27,10 @@ export const setStats = stats => {
         stats
     }
 }
+
+export const setClass = chosenClass => {
+    return {
+        type: 'SET_CLASS',
+        chosenClass
+    }
+}

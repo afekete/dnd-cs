@@ -1,15 +1,16 @@
 import React from 'react'
-import Footer from './Footer'
-import AddTodo from '../containers/AddTodo'
-import VisibleTodoList from '../containers/VisibleTodoList'
 import StatInputLink from '../containers/StatInputLink';
+import DiceRoller from './DiceRoller';
+import ClassSelectLink from '../containers/ClassSelectLink';
+import '../App.css'
 
 const App = () => (
-    <div>
-        <AddTodo />
-        <VisibleTodoList />
-        <Footer />
+    <div id="App">
+        <ClassSelectLink />
+        <br />
         <StatInputLink />
+        <br />
+        <DiceRoller />
     </div>
 )
 

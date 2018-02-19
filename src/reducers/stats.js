@@ -1,11 +1,11 @@
-const INITIAL_STATS = {
-    str: 0,
-    dex: 0,
-    con: 0,
-    int: 0,
-    wis: 0,
-    cha: 0
-}
+const INITIAL_STATS = [
+    { "name": "str", "value": 0 },
+    { "name": "dex", "value": 0 },
+    { "name": "con", "value": 0 },
+    { "name": "int", "value": 0 },
+    { "name": "wis", "value": 0 },
+    { "name": "cha", "value": 0 }
+]
 const stats = (state = INITIAL_STATS, action) => {
     switch (action.type) {
         case 'SET_STATS':
