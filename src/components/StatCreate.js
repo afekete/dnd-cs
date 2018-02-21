@@ -45,6 +45,7 @@ class StatCreate extends Component {
     handleAddMod(e) {
         let modifier = {
             operator: this.state.modOperator,
+            type: this.state.selectedModType,
             value: this.state.modInputVal
         }
         let modifiers = [ ...this.state.modifiers, modifier ]

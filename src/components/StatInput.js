@@ -8,6 +8,10 @@ class StatInput extends Component {
             stats: props.stats
         }
     }
+    
+    handleModChange(statIdx, modIdx, e) {
+        // get stat by idx, get modifier by idx, set value from e
+    }
 
     handleChange(stat, e) {
         let stats = { ...this.state.stats }
@@ -21,13 +25,30 @@ class StatInput extends Component {
     }
 
     render() {
-        let statInputs = this.state.stats.map((input) =>
-            <div key={input.name}>
-                <label htmlFor={input.name + "-input"}>{input.name}</label>
-                <input id={input.name + "-input"} type="number" value={input.value} onChange={e => this.handleChange(input.name, e)} />
-                <br />
-            </div>
-        )
+        let statInputs = this.state.stats.map((stat, statIdx) => {
+            let modifiers = stat.modifiers.map((mod, modIdx) => {
+              switch (mod.type) {
+                case 'num':
+                  return (
+                    <div key={modIdx} className="inline-block" >{mod.operator}<input type="number" value={mod.value}
+                      onChange={e => this.handleModChange(statIdx, modIdx, e)} /></div>
+                  )
+                case 'stat':
+                  return (
+                    <span key={modIdx}>{mod.operator + mod.value}</span>
+                  )
+                default:
+                  throw new Error("Invalid modifier type " + mod.type)
+              }
+            })
+            return (
+              <div key={stat.name}>
+                  <label htmlFor={stat.name + "-input"}>{stat.name + ': '}</label>
+                  {modifiers}
+                  <br />
+              </div>
+            )
+        })
 
         return (
             <form
