@@ -28,6 +28,13 @@ export const setStats = stats => {
     }
 }
 
+export const createStat = stat => {
+    return {
+        type: 'CREATE_STAT',
+        stat
+    }
+}
+
 export const setClass = chosenClass => {
     return {
         type: 'SET_CLASS',

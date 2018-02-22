@@ -1,4 +1,5 @@
 import { connect } from 'react-redux'
+import { createStat } from '../actions'
 import StatCreate from '../components/StatCreate'
 
 const mapStateToProps = state => {
@@ -7,7 +8,13 @@ const mapStateToProps = state => {
     }
 }
 
-const mapDispatchToProps = null
+const mapDispatchToProps = dispatch => {
+    return {
+        handleSubmit: stat =>{
+            dispatch(createStat(stat))
+        }
+    }
+}
 
 const StatCreateLink = connect(
     mapStateToProps,

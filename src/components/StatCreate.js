@@ -42,6 +42,10 @@ class StatCreate extends Component {
         }
     }
 
+    resetComponent() {
+
+    }
+
     handleAddMod(e) {
         let modifier = {
             operator: this.state.modOperator,
@@ -57,7 +61,14 @@ class StatCreate extends Component {
 
     handleSubmit(e) {
         e.preventDefault()
-        console.log(this.state)
+        this.props.handleSubmit({ name: this.state.statName, modifiers: this.state.modifiers })
+        this.setState({
+            statName: '',
+            modifiers: [],
+            modOperator: '',
+            selectedModType: "num",
+            modInputVal: '0'
+        })
     }
 
     render() {
@@ -125,7 +136,8 @@ class StatCreate extends Component {
 }
 
 StatCreate.propTypes = {
-    stats: PropTypes.array.isRequired
+    stats: PropTypes.array.isRequired,
+    handleSubmit: PropTypes.func.isRequired
 }
 
 export default StatCreate

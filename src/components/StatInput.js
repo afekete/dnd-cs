@@ -2,30 +2,23 @@ import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 
 class StatInput extends Component {
-    constructor(props) {
-        super(props)
-        this.state = {
-            stats: props.stats
-        }
-    }
+    // constructor(props) {
+    //     super(props)
+    // }
     
     handleModChange(statIdx, modIdx, e) {
+        e.preventDefault()
+        let stats = [ ...this.props.stats ]
+        let stat = { ...stats[statIdx] }
+        let mods = [ ...stat.modifiers ]
+        mods[modIdx].value = e.target.value 
+        this.props.handleSubmit(stats)
+        // this.setState({ stats })
         // get stat by idx, get modifier by idx, set value from e
     }
 
-    handleChange(stat, e) {
-        let stats = { ...this.state.stats }
-        stats[stat] = e.target.value
-        this.setState({ stats })
-    }
-
-    handleSubmit(e) {
-        e.preventDefault()
-        this.props.handleSubmit(this.state.stats)
-    }
-
     render() {
-        let statInputs = this.state.stats.map((stat, statIdx) => {
+        let statInputs = this.props.stats.map((stat, statIdx) => {
             let modifiers = stat.modifiers.map((mod, modIdx) => {
               switch (mod.type) {
                 case 'num':
@@ -43,7 +36,7 @@ class StatInput extends Component {
             })
             return (
               <div key={stat.name}>
-                  <label htmlFor={stat.name + "-input"}>{stat.name + ': '}</label>
+                  <label htmlFor={stat.name + "-input"}>{stat.name + '(' + stat.value + '): '}</label>
                   {modifiers}
                   <br />
               </div>
@@ -51,14 +44,9 @@ class StatInput extends Component {
         })
 
         return (
-            <form
-                onSubmit={e => this.handleSubmit(e)}
-            >
+            <div>
                 {statInputs}
-                <button type="submit">
-                    Submit
-                </button>
-            </form>
+            </div>
         )
     }
 }
