@@ -120,6 +120,7 @@ class StatCreate extends Component {
 
         return (
             <form >
+                <label htmlFor="statName">Stat Name</label>
                 <input name="statName" type="string" value={this.state.statName} onChange={e => this.handleChange(e)} />
                 <br />
                 {modifiers}
