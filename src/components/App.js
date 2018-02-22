@@ -2,8 +2,9 @@ import React from 'react'
 import StatInputLink from '../containers/StatInputLink';
 import DiceRoller from './DiceRoller';
 import ClassSelectLink from '../containers/ClassSelectLink';
-import '../App.css'
 import StatCreateLink from '../containers/StatCreateLink';
+import RaceBuilder from './RaceBuilder'
+import '../App.css'
 
 const App = () => (
     <div id="App">
@@ -14,6 +15,8 @@ const App = () => (
         <StatInputLink />
         <br />
         <DiceRoller />
+        <br />
+        <RaceBuilder />
     </div>
 )
 

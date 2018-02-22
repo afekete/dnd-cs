@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import StatSelect from './StatSelect'
 import PropTypes from 'prop-types'
 
 const MOD_TYPES = [
@@ -105,13 +106,14 @@ class StatCreate extends Component {
                 )
                 break
             case "stat":
-                let statOptions = this.props.stats.map((stat, idx) =>
-                    <option key={idx} value={stat.name}>{stat.name}</option>
-                )
+                // let statOptions = this.props.stats.map((stat, idx) =>
+                //     <option key={idx} value={stat.name}>{stat.name}</option>
+                // )
+                // <select name="modInputVal" value={this.state.modInputVal} onChange={e => this.handleChange(e)} >
+                //         {statOptions}
+                //     </select>
                 modInput = (
-                    <select name="modInputVal" value={this.state.modInputVal} onChange={e => this.handleChange(e)} >
-                        {statOptions}
-                    </select>
+                    <StatSelect stats={this.props.stats} name="modInputVal" value={this.state.modInputVal} handleChange={e => this.handleChange(e)} />
                 )
                 break
             default:
