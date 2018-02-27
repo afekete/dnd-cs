@@ -11,7 +11,8 @@ class RaceBuilder extends Component {
     render() {
         return (
             <div>
-                <label htmlFor="abilityBonusStat">Ability Bonuses</label>
+                <label htmlFor="abilityBonusStat">Ability Bonuses:</label>
+                <br />
                 <StatSelect stats={this.props.stats} name="abilityBonusStat" value={this.state.modInputVal} handleChange={e => this.handleChange(e)} />
             </div>
         )
