@@ -3,7 +3,7 @@ import StatInputLink from '../containers/StatInputLink';
 import DiceRoller from './DiceRoller';
 import ClassSelectLink from '../containers/ClassSelectLink';
 import StatCreateLink from '../containers/StatCreateLink';
-import RaceBuilderLink from '../containers/RaceBuilderLink'
+import AbilityBonusBuilderLink from '../containers/AbilityBonusBuilderLink'
 import '../App.css'
 
 const App = () => (
@@ -14,7 +14,7 @@ const App = () => (
         <br />
         <StatInputLink />
         <br />
-        <RaceBuilderLink />
+        <AbilityBonusBuilderLink />
         <br />
         <DiceRoller />
     </div>

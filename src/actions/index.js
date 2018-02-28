@@ -19,6 +19,13 @@ export const setClass = chosenClass => {
     }
 }
 
+export const addMod = modifier => {
+    return {
+        type: 'ADD_MOD',
+        modifier
+    }
+}
+
 // let nextTodoId = 0
 // export const addTodo = text => {
 //     return {

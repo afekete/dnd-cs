@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import Modifier from '../models/Modifier'
 import PropTypes from 'prop-types'
 
 class StatInput extends Component {
@@ -11,7 +12,11 @@ class StatInput extends Component {
         let stats = [ ...this.props.stats ]
         let stat = { ...stats[statIdx] }
         let mods = [ ...stat.modifiers ]
-        mods[modIdx].value = e.target.value 
+        let mod = mods[modIdx]
+        let newMod = new Modifier('', mod.type, mod.operator, e.target.value)
+        stat.modifiers = Object.assign([ ...stat.modifiers ], {[modIdx]: newMod})
+        stats = Object.assign([ ...this.props.stats ], {[statIdx]: stat})
+        
         this.props.handleSubmit(stats)
         // this.setState({ stats })
         // get stat by idx, get modifier by idx, set value from e

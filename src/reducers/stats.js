@@ -1,29 +1,19 @@
+import Modifier from '../models/Modifier'
+
 const INITIAL_STATS = [
     {
         "name": "str",
         "value": '0',
         "modifiers": [
-            {
-                operator: '',
-                type: 'num',
-                value: '0'
-            }
+            new Modifier('default input', 'num', '', '0')
         ]
     },
     {
         "name": "dex",
         "value": '0',
         "modifiers": [
-            {
-                operator: '',
-                type: 'num',
-                value: '0'
-            },
-            {
-                operator: '+',
-                type: 'stat',
-                value: 'str'
-            }
+            new Modifier('default input', 'num', '', '0'),
+            new Modifier('add str', 'stat', '+', 'str')
         ]
     }
     // { "name": "con", "value": 0 },
@@ -56,7 +46,7 @@ const calculateStats = (stats) => {
                     value = Number(modVal)
                     break
                 case '+':
-                    value += Number(modVal) 
+                    value += Number(modVal)
                     break
                 case '-':
                     value -= Number(modVal)
@@ -77,6 +67,15 @@ const stats = (state = INITIAL_STATS, action) => {
             return calculateStats(action.stats)
         case 'CREATE_STAT':
             return calculateStats([...state, action.stat])
+        case 'ADD_MOD':
+            let statIdx = state.findIndex((elem) => {
+                return elem.name === action.modifier.statName
+            })
+
+            let modifiers = [ ...state[statIdx].modifiers, action.modifier ]
+            let stat = { ...state[statIdx], modifiers }
+            let stats = Object.assign([], state, {[statIdx]: stat})
+            return calculateStats(stats)
         default:
             return state
     }
